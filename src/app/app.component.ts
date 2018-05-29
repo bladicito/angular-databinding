@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,36 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  first = 0;
-  second = 0;
-  result = 0;
-  operator = '+';
+  @Input() result: number;
 
-  onFirstValueChange(e: Event) {
-    this.first = Number((<HTMLInputElement>e.target).value);
-    this.calculate();
-  }
-
-  onSecondValueChange(e: Event) {
-    this.second = Number((<HTMLInputElement>e.target).value);
-    this.calculate();
-  }
-
-  onOperatorChange(e: Event) {
-    this.operator = (<HTMLSelectElement>e.target).value;
-    this.calculate();
-  }
-
-  calculate() {
-    switch (this.operator) {
-      case '+': {
-        this.result = this.first + this.second;
-        break;
-      }
-      case '-': {
-        this.result = this.first - this.second;
-        break;
-      }
-    }
+  onResultChange(result: number) {
+    this.result = result;
   }
 }
